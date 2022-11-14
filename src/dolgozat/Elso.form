@@ -237,8 +237,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="jPanel3" min="-2" pref="154" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jPanel3" min="-2" pref="160" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="170" max="32767" attributes="0"/>
                   </Group>
@@ -276,26 +276,6 @@
                 <Property name="rows" type="int" value="3"/>
                 <Property name="verticalGap" type="int" value="10"/>
               </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JButton" name="jButton11">
-                </Component>
-                <Component class="javax.swing.JButton" name="jButton20">
-                </Component>
-                <Component class="javax.swing.JButton" name="jButton21">
-                </Component>
-                <Component class="javax.swing.JButton" name="jButton22">
-                </Component>
-                <Component class="javax.swing.JButton" name="jButton23">
-                </Component>
-                <Component class="javax.swing.JButton" name="jButton24">
-                </Component>
-                <Component class="javax.swing.JButton" name="jButton25">
-                </Component>
-                <Component class="javax.swing.JButton" name="jButton26">
-                </Component>
-                <Component class="javax.swing.JButton" name="jButton27">
-                </Component>
-              </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel4">
               <Properties>
@@ -341,6 +321,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="&quot;X&quot; kezd"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="jRadioButton2">
                   <Properties>
@@ -349,6 +332,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="&quot;O&quot; kezd"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton2ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

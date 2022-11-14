@@ -14,10 +14,14 @@ public class Elso extends javax.swing.JFrame {
     private Integer[] szamok = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
     private Integer[] rndSzamok = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
     private JButton[] myTomb = new JButton[10];
+    private JButton[] amobaTomb;
+    private static boolean xKezdo = true;
     
     public Elso() {
         initComponents();
         gombok();
+        amobaSetUp(3);
+        amobaStart();
         buttonListener();
         alaphelyzet();
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -59,15 +63,6 @@ public class Elso extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jatekPanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton11 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
-        jButton24 = new javax.swing.JButton();
-        jButton25 = new javax.swing.JButton();
-        jButton26 = new javax.swing.JButton();
-        jButton27 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
@@ -154,15 +149,6 @@ public class Elso extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Amőba"));
         jPanel3.setLayout(new java.awt.GridLayout(3, 3, 10, 10));
-        jPanel3.add(jButton11);
-        jPanel3.add(jButton20);
-        jPanel3.add(jButton21);
-        jPanel3.add(jButton22);
-        jPanel3.add(jButton23);
-        jPanel3.add(jButton24);
-        jPanel3.add(jButton25);
-        jPanel3.add(jButton26);
-        jPanel3.add(jButton27);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Beállítás"));
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.Y_AXIS));
@@ -178,10 +164,20 @@ public class Elso extends javax.swing.JFrame {
 
         buttonGroup2.add(jRadioButton1);
         jRadioButton1.setText("\"X\" kezd");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
         jPanel4.add(jRadioButton1);
 
         buttonGroup2.add(jRadioButton2);
         jRadioButton2.setText("\"O\" kezd");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
         jPanel4.add(jRadioButton2);
 
         javax.swing.GroupLayout jatekPanelLayout = new javax.swing.GroupLayout(jatekPanel);
@@ -190,8 +186,8 @@ public class Elso extends javax.swing.JFrame {
             jatekPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jatekPanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(170, Short.MAX_VALUE))
         );
@@ -298,6 +294,14 @@ public class Elso extends javax.swing.JFrame {
         kilepes();
     }//GEN-LAST:event_kilepesMenuItemActionPerformed
 
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        xKezdo = true;
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        xKezdo = false;
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -337,15 +341,6 @@ public class Elso extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JRadioButtonMenuItem fuggolegesMenuItem;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton25;
-    private javax.swing.JButton jButton26;
-    private javax.swing.JButton jButton27;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;
@@ -379,6 +374,10 @@ public class Elso extends javax.swing.JFrame {
             jButton.setBackground(null);
             index += 1;
         }
+        for (JButton jButton : amobaTomb) {
+            jButton.setText("");
+            xKezdo = true;
+        }
     }
     private void kilepes() {
             int v = JOptionPane.showConfirmDialog(this, "Biztos kilépsz?", "Kilépés", JOptionPane.YES_NO_OPTION);
@@ -393,6 +392,36 @@ public class Elso extends javax.swing.JFrame {
             jPanel1.add(myTomb[i]);
         }
     }
+
+    private void amobaSetUp(int buttonok) {
+    amobaTomb = new JButton[buttonok*buttonok];
+        for (int i = 0; i < amobaTomb.length; i++) {
+             amobaTomb[i] = new JButton();
+            jPanel3.add(amobaTomb[i]);
+        }
+    }
+
+    private void amobaStart() {
+        for (JButton jButton : amobaTomb) {
+            jButton.addActionListener(new AmobaListener());
+        }
+    
+    }
+
+    private static class AmobaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+                JButton myButton = (JButton) e.getSource();
+            if (xKezdo) {
+                myButton.setText("X");
+            }
+            else if (!xKezdo) {
+                myButton.setText("O");
+            }
+            xKezdo = !xKezdo;}
+    }
+
     class WindowBelsoListener extends WindowAdapter {
     @Override
             public void windowClosing(WindowEvent e) {
