@@ -1,20 +1,40 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package dolgozat;
 
-/**
- *
- * @author paulusz.k.csanad
- */
-public class Elso extends javax.swing.JFrame {
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Random;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 
-    /**
-     * Creates new form Elso
-     */
+public class Elso extends javax.swing.JFrame {
+    private Integer[] szamok = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+    private Integer[] rndSzamok = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+    
     public Elso() {
         initComponents();
+        buttonListener();
+        alaphelyzet();
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowBelsoListener());
+    }
+    public void setNumbers(Integer[] szamok) {
+        JButton[] myTomb = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton6, jButton7, jButton8, jButton9, jButton10};
+        int index = 0;
+        for (JButton jButton : myTomb) {
+            jButton.setText(szamok[index].toString());
+            index +=1;
+            
+        }
+    }
+    public void buttonListener() {
+        JButton[] myTomb = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton6, jButton7, jButton8, jButton9, jButton10};
+        for (JButton jButton : myTomb) {
+            jButton.addActionListener(new CyanListener());
+        }
     }
 
     /**
@@ -27,46 +47,243 @@ public class Elso extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        myJTP = new javax.swing.JTabbedPane();
+        loginPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
+        jatekPanel = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jButton11 = new javax.swing.JButton();
+        jButton20 = new javax.swing.JButton();
+        jButton21 = new javax.swing.JButton();
+        jButton22 = new javax.swing.JButton();
+        jButton23 = new javax.swing.JButton();
+        jButton24 = new javax.swing.JButton();
+        jButton25 = new javax.swing.JButton();
+        jButton26 = new javax.swing.JButton();
+        jButton27 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
         myMenuBar = new javax.swing.JMenuBar();
         programMenu = new javax.swing.JMenu();
         ujraMenuItem = new javax.swing.JMenuItem();
         mySep = new javax.swing.JPopupMenu.Separator();
         kilepesMenuItem = new javax.swing.JMenuItem();
         jatekElrendezMenu = new javax.swing.JMenu();
-        jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
+        vizszintesMenuItem = new javax.swing.JRadioButtonMenuItem();
+        fuggolegesMenuItem = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(0, 0, 410, 350));
         setName("myFrame"); // NOI18N
         setPreferredSize(new java.awt.Dimension(410, 350));
+
+        myJTP.setName("Bejelentkezés"); // NOI18N
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pin kód"));
+        jPanel1.setToolTipText("");
+        jPanel1.setLayout(new java.awt.GridLayout(4, 3, 2, 2));
+
+        jButton1.setText("jButton1");
+        jPanel1.add(jButton1);
+
+        jButton2.setText("jButton1");
+        jPanel1.add(jButton2);
+
+        jButton3.setText("jButton1");
+        jPanel1.add(jButton3);
+
+        jButton4.setText("jButton1");
+        jPanel1.add(jButton4);
+
+        jButton5.setText("jButton1");
+        jPanel1.add(jButton5);
+
+        jButton6.setText("jButton1");
+        jPanel1.add(jButton6);
+
+        jButton7.setText("jButton1");
+        jPanel1.add(jButton7);
+
+        jButton8.setText("jButton1");
+        jPanel1.add(jButton8);
+
+        jButton9.setText("jButton1");
+        jPanel1.add(jButton9);
+
+        jButton10.setText("jButton1");
+        jPanel1.add(jButton10);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Beállítás"));
+        jPanel2.setMaximumSize(new java.awt.Dimension(350, 400));
+
+        jCheckBox1.setText("kever");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("kód:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jCheckBox1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+        );
+
+        javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
+        loginPanel.setLayout(loginPanelLayout);
+        loginPanelLayout.setHorizontalGroup(
+            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loginPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(107, 107, 107))
+        );
+        loginPanelLayout.setVerticalGroup(
+            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loginPanelLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
+        );
+
+        myJTP.addTab("Bejelentkezés", loginPanel);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Amőba"));
+        jPanel3.setLayout(new java.awt.GridLayout(3, 3, 10, 10));
+        jPanel3.add(jButton11);
+        jPanel3.add(jButton20);
+        jPanel3.add(jButton21);
+        jPanel3.add(jButton22);
+        jPanel3.add(jButton23);
+        jPanel3.add(jButton24);
+        jPanel3.add(jButton25);
+        jPanel3.add(jButton26);
+        jPanel3.add(jButton27);
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Beállítás"));
+        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.Y_AXIS));
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "3*3", "4*4", "5*5", "6*6" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        jPanel4.add(jScrollPane1);
+
+        buttonGroup2.add(jRadioButton1);
+        jRadioButton1.setText("\"X\" kezd");
+        jPanel4.add(jRadioButton1);
+
+        buttonGroup2.add(jRadioButton2);
+        jRadioButton2.setText("\"O\" kezd");
+        jPanel4.add(jRadioButton2);
+
+        javax.swing.GroupLayout jatekPanelLayout = new javax.swing.GroupLayout(jatekPanel);
+        jatekPanel.setLayout(jatekPanelLayout);
+        jatekPanelLayout.setHorizontalGroup(
+            jatekPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jatekPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(170, Short.MAX_VALUE))
+        );
+        jatekPanelLayout.setVerticalGroup(
+            jatekPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jatekPanelLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jatekPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jatekPanelLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(110, Short.MAX_VALUE))
+        );
+
+        myJTP.addTab("Játék", jatekPanel);
 
         programMenu.setText("Program");
 
         ujraMenuItem.setText("Újra");
         ujraMenuItem.setToolTipText("");
+        ujraMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ujraMenuItemActionPerformed(evt);
+            }
+        });
         programMenu.add(ujraMenuItem);
         programMenu.add(mySep);
 
         kilepesMenuItem.setText("Kilépés");
+        kilepesMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kilepesMenuItemActionPerformed(evt);
+            }
+        });
         programMenu.add(kilepesMenuItem);
 
         myMenuBar.add(programMenu);
 
         jatekElrendezMenu.setText("Játék elrendezése");
 
-        buttonGroup1.add(jRadioButtonMenuItem2);
-        jRadioButtonMenuItem2.setSelected(true);
-        jRadioButtonMenuItem2.setText("jRadioButtonMenuItem2");
-        jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(vizszintesMenuItem);
+        vizszintesMenuItem.setSelected(true);
+        vizszintesMenuItem.setText("vízszintes");
+        vizszintesMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonMenuItem2ActionPerformed(evt);
+                vizszintesMenuItemActionPerformed(evt);
             }
         });
-        jatekElrendezMenu.add(jRadioButtonMenuItem2);
+        jatekElrendezMenu.add(vizszintesMenuItem);
 
-        buttonGroup1.add(jRadioButtonMenuItem1);
-        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
-        jatekElrendezMenu.add(jRadioButtonMenuItem1);
+        buttonGroup1.add(fuggolegesMenuItem);
+        fuggolegesMenuItem.setText("függőleges");
+        jatekElrendezMenu.add(fuggolegesMenuItem);
 
         myMenuBar.add(jatekElrendezMenu);
 
@@ -76,19 +293,48 @@ public class Elso extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(myJTP)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addComponent(myJTP)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButtonMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem2ActionPerformed
+    private void vizszintesMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vizszintesMenuItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
+    }//GEN-LAST:event_vizszintesMenuItemActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        JCheckBox myCB = (JCheckBox) evt.getSource();
+        if (myCB.isSelected()) {
+        
+
+        
+		Random rand = new Random();
+		
+		for (int i = 0; i < rndSzamok.length; i++) {
+			int randomIndexToSwap = rand.nextInt(rndSzamok.length);
+			int temp = rndSzamok[randomIndexToSwap];
+			rndSzamok[randomIndexToSwap] = rndSzamok[i];
+			rndSzamok[i] = temp;
+		}
+        
+        setNumbers(rndSzamok);
+        }
+        else setNumbers(szamok);
+
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void ujraMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ujraMenuItemActionPerformed
+       alaphelyzet();
+    }//GEN-LAST:event_ujraMenuItemActionPerformed
+
+    private void kilepesMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kilepesMenuItemActionPerformed
+        kilepes();
+    }//GEN-LAST:event_kilepesMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,13 +373,86 @@ public class Elso extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JRadioButtonMenuItem fuggolegesMenuItem;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
+    private javax.swing.JButton jButton25;
+    private javax.swing.JButton jButton26;
+    private javax.swing.JButton jButton27;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JMenu jatekElrendezMenu;
+    private javax.swing.JPanel jatekPanel;
     private javax.swing.JMenuItem kilepesMenuItem;
+    private javax.swing.JPanel loginPanel;
+    private javax.swing.JTabbedPane myJTP;
     private javax.swing.JMenuBar myMenuBar;
     private javax.swing.JPopupMenu.Separator mySep;
     private javax.swing.JMenu programMenu;
     private javax.swing.JMenuItem ujraMenuItem;
+    private javax.swing.JRadioButtonMenuItem vizszintesMenuItem;
     // End of variables declaration//GEN-END:variables
+
+    private void alaphelyzet() {
+        jTextField1.setText(" ");
+        setNumbers(szamok);
+        JButton[] myTomb = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton6, jButton7, jButton8, jButton9, jButton10};
+        jCheckBox1.setSelected(false);
+        int index = 0;
+        for (JButton jButton : myTomb) {
+            jButton.setBackground(null);
+            index += 1;
+        }
+    }
+    private void kilepes() {
+            int v = JOptionPane.showConfirmDialog(this, "Biztos kilépsz?", "Kilépés", JOptionPane.YES_NO_OPTION);
+            if (v == JOptionPane.YES_OPTION) {
+                System.exit(0);   
+            }
+    }
+    class WindowBelsoListener extends WindowAdapter {
+    @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                kilepes();
+            }
+    }
+    class CyanListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        JButton myButton = (JButton) e.getSource();
+        myButton.setBackground(Color.CYAN);
+//        System.out.println("ELÖZŐ: " +jTextField1.getText());
+//        System.out.println("ÚJ: " + myButton.getText());
+        String textT = jTextField1.getText() + myButton.getText();
+//        System.out.println("ELÖZŐ+ÚJ: " + textT+"\n");
+        jTextField1.setText(textT);
+        
+        }
+    };
 }
