@@ -13,16 +13,18 @@ import javax.swing.JOptionPane;
 public class Elso extends javax.swing.JFrame {
     private Integer[] szamok = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
     private Integer[] rndSzamok = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+    private JButton[] myTomb = new JButton[10];
     
     public Elso() {
         initComponents();
+        gombok();
         buttonListener();
         alaphelyzet();
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowBelsoListener());
     }
     public void setNumbers(Integer[] szamok) {
-        JButton[] myTomb = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton6, jButton7, jButton8, jButton9, jButton10};
+//        JButton[] myTomb = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton6, jButton7, jButton8, jButton9, jButton10};
         int index = 0;
         for (JButton jButton : myTomb) {
             jButton.setText(szamok[index].toString());
@@ -31,7 +33,7 @@ public class Elso extends javax.swing.JFrame {
         }
     }
     public void buttonListener() {
-        JButton[] myTomb = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton6, jButton7, jButton8, jButton9, jButton10};
+//        JButton[] myTomb = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton6, jButton7, jButton8, jButton9, jButton10};
         for (JButton jButton : myTomb) {
             jButton.addActionListener(new CyanListener());
         }
@@ -51,16 +53,6 @@ public class Elso extends javax.swing.JFrame {
         myJTP = new javax.swing.JTabbedPane();
         loginPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
@@ -100,36 +92,6 @@ public class Elso extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pin kód"));
         jPanel1.setToolTipText("");
         jPanel1.setLayout(new java.awt.GridLayout(4, 3, 2, 2));
-
-        jButton1.setText("jButton1");
-        jPanel1.add(jButton1);
-
-        jButton2.setText("jButton1");
-        jPanel1.add(jButton2);
-
-        jButton3.setText("jButton1");
-        jPanel1.add(jButton3);
-
-        jButton4.setText("jButton1");
-        jPanel1.add(jButton4);
-
-        jButton5.setText("jButton1");
-        jPanel1.add(jButton5);
-
-        jButton6.setText("jButton1");
-        jPanel1.add(jButton6);
-
-        jButton7.setText("jButton1");
-        jPanel1.add(jButton7);
-
-        jButton8.setText("jButton1");
-        jPanel1.add(jButton8);
-
-        jButton9.setText("jButton1");
-        jPanel1.add(jButton9);
-
-        jButton10.setText("jButton1");
-        jPanel1.add(jButton10);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Beállítás"));
         jPanel2.setMaximumSize(new java.awt.Dimension(350, 400));
@@ -375,10 +337,7 @@ public class Elso extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JRadioButtonMenuItem fuggolegesMenuItem;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
@@ -387,13 +346,6 @@ public class Elso extends javax.swing.JFrame {
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton27;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;
@@ -420,7 +372,7 @@ public class Elso extends javax.swing.JFrame {
     private void alaphelyzet() {
         jTextField1.setText(" ");
         setNumbers(szamok);
-        JButton[] myTomb = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton6, jButton7, jButton8, jButton9, jButton10};
+//        JButton[] myTomb = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton6, jButton7, jButton8, jButton9, jButton10};
         jCheckBox1.setSelected(false);
         int index = 0;
         for (JButton jButton : myTomb) {
@@ -433,6 +385,13 @@ public class Elso extends javax.swing.JFrame {
             if (v == JOptionPane.YES_OPTION) {
                 System.exit(0);   
             }
+    }
+
+    private void gombok() {
+        for (int i = 0; i < 10; i++) {
+            myTomb[i] = new JButton();
+            jPanel1.add(myTomb[i]);
+        }
     }
     class WindowBelsoListener extends WindowAdapter {
     @Override
